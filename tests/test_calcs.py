@@ -9,4 +9,4 @@ def test_function_1():
     Docstring
     """
 
-    assert function_1() == None
+    assert function_1() is None
