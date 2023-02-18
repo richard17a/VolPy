@@ -1,4 +1,8 @@
-from distutils.core import setup
+"""
+setup module docstring
+"""
+
+from setuptools import setup
 setup(
     name='volpy',
     version='0.0.1',
