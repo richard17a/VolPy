@@ -49,4 +49,3 @@ def test_calculate_snowline():
     assert len(snowline_3) == len(mass)
     assert len(snowline_3) == len(inner)
     assert len(inner) == len(outer)
-test_calculate_snowline()
