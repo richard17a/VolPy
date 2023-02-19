@@ -6,3 +6,6 @@ ignore-imports=yes
 
 [TYPECHECK]
 ignored-modules=astropy.constants
+
+[MASTER]
+init-hook='import sys; sys.path.append("/Users/richardanslow/Documents/Coding/Python/VolPy/")'
