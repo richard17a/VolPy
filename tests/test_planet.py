@@ -2,7 +2,7 @@
 Docstring
 """
 
-import pytest
+import pytest # pylint: disable=import-error
 from volpy.planet import Planet
 
 
