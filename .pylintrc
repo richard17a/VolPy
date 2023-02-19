@@ -1,0 +1,8 @@
+[MAIN]
+
+[SIMILARITIES]
+min-similarity-lines=6
+ignore-imports=yes
+
+[TYPECHECK]
+ignored-modules=astropy.constants
