@@ -2,8 +2,8 @@
 Docstring
 """
 
-import numpy as np
-import pytest
+import numpy as np # pylint: disable=import-error
+import pytest # pylint: disable=import-error
 from volpy.velocities.generate_vimp_dist import (calculate_relative_velocity,
                                                  calculate_escape_velocity,
                                                  generate_vimp_dist)

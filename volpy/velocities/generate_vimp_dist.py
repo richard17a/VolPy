@@ -2,8 +2,8 @@
 Docstring
 """
 
-import numpy as np
-from astropy import constants as const
+import numpy as np # pylint: disable=import-error
+from astropy import constants as const # pylint: disable=import-error
 from volpy.planet import Planet
 from volpy.star import Star
 
