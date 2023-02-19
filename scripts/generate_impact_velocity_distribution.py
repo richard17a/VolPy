@@ -1,5 +1,6 @@
 """
-This demonstrates how to generate a velocity distribution for an arbitrary Tisserand parameter distribution.
+This demonstrates how to generate a velocity distribution for an arbitrary
+Tisserand parameter distribution.
 """
 
 import numpy as np # pylint: disable=import-error
