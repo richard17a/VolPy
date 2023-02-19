@@ -11,7 +11,7 @@ setup(
     url='https://github.com/richard17a/VolPy',
     license='GNU License',
     packages=['volpy', 'volpy.velocities'],
-    description='An example of building Python package.',
+    description='Description tbc.',
     install_requires=[
     #'python>=3.6.0',
     #'pandas>=0.10.0'
