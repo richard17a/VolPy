@@ -22,6 +22,8 @@ def main():
     plt.xscale('log')
     plt.yscale('log')
     plt.xlim(1e-1, 3)
+    plt.xlabel(r'$M_\ast/M_\odot$')
+    plt.xlabel(r'$R_\mathrm{SL}$')
     plt.show()
 
 

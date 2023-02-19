@@ -29,7 +29,7 @@ def calc_luminosity(mass: np.ndarray):
                   7.108 * (np.log10(mass[mass <=1]) ** 1) + 0.065
 
         lum = []
-        lum = np.append(lum, log_lum)
-        lum = np.append(lum, log_lum[-1] * mass[np.where( (mass > 1) & (mass <= 3) )] ** 4.)
+        lum = np.append(lum, 10 ** log_lum)
+        lum = np.append(lum, 10 ** log_lum[-1] * mass[np.where( (mass > 1) & (mass <= 3) )] ** 4.)
 
     return lum
