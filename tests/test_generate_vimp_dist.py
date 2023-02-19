@@ -5,7 +5,6 @@ Docstring
 import numpy as np # pylint: disable=import-error
 import pytest # pylint: disable=import-error
 from volpy.velocities.generate_vimp_dist import (calculate_relative_velocity,
-                                                 calculate_escape_velocity,
                                                  generate_vimp_dist)
 from volpy.planet import Planet
 from volpy.star import Star
@@ -48,26 +47,6 @@ def test_calculate_relative_velocity():
     assert v_rel_3 == 0
 
 
-def test_calculate_escape_velocity():
-    """
-    Docstring
-    """
-
-    earth = Planet(mass=3.00e-6,
-                   radius=4.26e-5,
-                   semimajor_axis=1.)
-    mars = Planet(mass=3.00e-6 * 0.107,
-                  radius=4.26e-5 * 0.53,
-                  semimajor_axis=1.524)
-
-    v_esc_earth = calculate_escape_velocity(planet=earth)
-    v_esc_mars = calculate_escape_velocity(planet=mars)
-
-    assert v_esc_earth
-    assert np.isclose(v_esc_earth / 1e3, 11.177, rtol=1e-4)
-    assert v_esc_mars < v_esc_earth
-
-
 def test_generate_vimp_dist():
     """
     Docstring
@@ -86,7 +65,7 @@ def test_generate_vimp_dist():
     v_imp = generate_vimp_dist(tiss_params=np.array([3.]),
                                star=star,
                                planet=planet)
-    v_esc = calculate_escape_velocity(planet=planet)
+    v_esc = planet.calculate_escape_velocity()
 
     tiss_params = np.linspace(2., 2.999, 1000)
     v_imp_2 = generate_vimp_dist(tiss_params=tiss_params,

@@ -2,6 +2,9 @@
 An abstract planet object
 """
 
+from astropy import constants as const # pylint: disable=import-error
+import numpy as np # pylint: disable=import-error
+
 
 class Planet():
     """
@@ -67,3 +70,12 @@ class Planet():
             raise TypeError("Semi-major axis attribute of Planet object must be a float.")
         if isinstance(semimajor_axis, float):
             self._semimajor_axis = semimajor_axis
+
+    def calculate_escape_velocity(self):
+        """
+        Docstring
+        """
+        v_esc = np.sqrt( (2 * const.G.value * self.mass * const.M_sun.value) /
+                     (self.radius * const.au.value))
+
+        return v_esc

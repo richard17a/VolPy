@@ -32,19 +32,6 @@ def calculate_relative_velocity(tiss: float,
     return v_rel
 
 
-def calculate_escape_velocity(planet: Planet):
-    """
-    Docstring
-    """
-    if not isinstance(planet, Planet):
-        raise TypeError('You must specifcy a Planet object.')
-
-    v_esc = np.sqrt( (2 * const.G.value * planet.mass * const.M_sun.value) /
-                     (planet.radius * const.au.value))
-
-    return v_esc
-
-
 def generate_vimp_dist(tiss_params: np.ndarray,
                        star: Star,
                        planet: Planet):
@@ -61,7 +48,7 @@ def generate_vimp_dist(tiss_params: np.ndarray,
         raise TypeError('A Planet object is required for generating the impact\
                          velocity distribution.')
 
-    v_esc = calculate_escape_velocity(planet=planet)
+    v_esc = planet.calculate_escape_velocity()
 
     v_imp = []
 
