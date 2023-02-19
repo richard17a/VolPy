@@ -2,7 +2,7 @@
 setup module docstring
 """
 
-from setuptools import setup, find_packages
+from setuptools import setup
 setup(
     name='volpy',
     version='0.0.1',
