@@ -6,3 +6,6 @@ ignore-imports=yes
 
 [TYPECHECK]
 ignored-modules=astropy.constants
+
+[MASTER]
+extension-pkg-whitelist=numpy,nose,nose.tools
