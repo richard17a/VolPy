@@ -20,31 +20,31 @@ def test_calculate_max_num_planets():
     habitable_zone = calculate_habitable_zone(mass=mass)
     snow_line = calculate_snowline(mass=mass)
 
-    earth = Planet(mass=3.00e-6,
-                   radius=4.26e-5,
-                   semimajor_axis=1.)
-    sun = Star(mass=1.)
+    planet = Planet(mass=3.00e-6,
+                    radius=4.26e-5,
+                    semimajor_axis=1.)
+    star = Star(mass=1.)
 
     max_num1 = calculate_max_num_planets(habitable_zone=habitable_zone[-1],
                                          snow_line=snow_line[-1],
-                                         star=sun,
-                                         planet=earth)
+                                         star=star,
+                                         planet=planet)
     max_num01 = calculate_max_num_planets(habitable_zone=habitable_zone[0],
                                           snow_line=snow_line[0],
-                                          star=sun,
+                                          star=star,
                                           planet=earth,
                                           conservative=True)
 
     with pytest.raises(TypeError):
         calculate_max_num_planets(habitable_zone=habitable_zone,
                                   snow_line=snow_line[-1],
-                                  star=sun,
-                                  planet=earth)
+                                  star=star,
+                                  planet=planet)
     with pytest.raises(TypeError):
         calculate_max_num_planets(habitable_zone=habitable_zone[-1],
                                   snow_line=snow_line[-1],
-                                  star=sun,
-                                  planet=earth,
+                                  star=star,
+                                  planet=planet,
                                   conservative=1)
 
     assert max_num1
