@@ -32,6 +32,29 @@ def calculate_relative_velocity(tiss: float,
     return v_rel
 
 
+def calculate_min_vimp(tiss: float,
+                       star: Star,
+                       planet: Planet):
+    """
+    Docstring
+    """
+
+    if not isinstance(tiss, float):
+        raise TypeError('Tisserand paramter must be a float for the minimum velocity calculation.')
+    if not isinstance(star, Star):
+        raise TypeError('A Star object is required for the minimum velocity calculation.')
+    if not isinstance(planet, Planet):
+        raise TypeError('A Planet object is required for the minimum velocity calculation.')
+
+    v_rel = calculate_relative_velocity(tiss=tiss,
+                                        star=star,
+                                        planet=planet)
+    v_esc = planet.calculate_escape_velocity()
+    v_imp = np.sqrt(v_esc ** 2 + v_rel ** 2)
+
+    return v_imp
+
+
 def generate_vimp_dist(tiss_params: np.ndarray,
                        star: Star,
                        planet: Planet):

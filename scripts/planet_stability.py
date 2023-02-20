@@ -28,7 +28,7 @@ def main():
 
     max_num = []
 
-    for hab_zone, i in enumerate(habitable_zone):
+    for i, hab_zone in enumerate(habitable_zone):
 
         max_num = np.append(max_num,
                             calculate_max_num_planets(habitable_zone=hab_zone,
