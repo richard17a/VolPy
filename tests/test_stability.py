@@ -32,7 +32,7 @@ def test_calculate_max_num_planets():
     max_num01 = calculate_max_num_planets(habitable_zone=habitable_zone[0],
                                           snow_line=snow_line[0],
                                           star=star,
-                                          planet=earth,
+                                          planet=planet,
                                           conservative=True)
 
     with pytest.raises(TypeError):
