@@ -61,7 +61,7 @@ def main():
     plt.plot(num_planets, tiss_m / max(tiss_m), marker='.', label='M dwarf')
     plt.plot(num_planets, tiss_k / max(tiss_k), marker='.', label='K dwarf')
 
-    plt.title('max(M dwarf) = {0:.3f}, max(K dwarf) = {1:.3f}'.format(max(tiss_m), max(tiss_k)))
+    plt.title(f'max(M dwarf) = {max(tiss_m):.3f}, max(K dwarf) = {max(tiss_k):.3f}')
     plt.xlabel(r'$N_\mathrm{pl}$')
     plt.ylabel(r'$\mathcal{T} / \mathrm{max}(\mathcal{T})$')
 
