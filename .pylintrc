@@ -13,4 +13,5 @@ extension-pkg-whitelist=numpy,nose,nose.tools
 
 [DESIGN]
 # Maximum number of locals for function / method body
-max-locals=25
+max-locals=50
+max-statements=100
