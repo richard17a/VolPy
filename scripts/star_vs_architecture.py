@@ -18,6 +18,40 @@ matplotlib.rcParams['mathtext.fontset'] = 'cm'
 matplotlib.rcParams['font.family'] = 'STIXGeneral'
 
 
+def set_size(width, fraction=1, subplots=(1, 1)):
+    """Set figure dimensions to avoid scaling in LaTeX.
+
+    Parameters
+    ----------
+    width: float or string
+            Document width in points, or string of predined document type
+    fraction: float, optional
+            Fraction of the width which you wish the figure to occupy
+    subplots: array-like, optional
+            The number of rows and columns of subplots.
+    Returns
+    -------
+    fig_dim: tuple
+            Dimensions of figure in inches
+    """
+    if width == 'thesis':
+        width_pt = 426.79135
+    elif width == 'beamer':
+        width_pt = 307.28987
+    else:
+        width_pt = width
+
+    # Golden ratio to set aesthetic figure height
+    # https://disq.us/p/2940ij3
+    golden_ratio = (5**.5 - 1) / 2
+
+
+    fig_width_in = width_pt * fraction
+    fig_height_in = fig_width_in * golden_ratio * (subplots[0] / subplots[1])
+
+    return (fig_width_in, fig_height_in)
+
+
 def calculate_mutual_hill_radius(mu_a: float,
                                  mu_b: float,
                                  a_a: float,
@@ -46,8 +80,7 @@ def calculate_max_tiss(mu_a: float,
 
     reduced_mass = ( (mu_a + mu_b) / 3) ** (1./3.) / 2
 
-    tiss = 2 * (1 - delta * reduced_mass) / (2 - delta * reduced_mass) +\
-           2 * np.sqrt( 2 / (2 - delta * reduced_mass) )
+    tiss = (1 - delta * reduced_mass) + 2 * np.sqrt( 1 + delta * reduced_mass )
 
     return tiss
 
@@ -87,13 +120,13 @@ def trappist1_delta_tiss():
     """
 
     rad_trappist_de = calculate_mutual_hill_radius(mu_a=1.534e-5, mu_b=2.319e-5,
-                                                 a_a=21.44e-3, a_b=28.17e-3)
+                                                   a_a=21.44e-3, a_b=28.17e-3)
     rad_trappist_ef = calculate_mutual_hill_radius(mu_a=2.319e-5, mu_b=2.544e-5,
-                                                 a_a=28.17e-3, a_b=37.10e-3)
+                                                   a_a=28.17e-3, a_b=37.10e-3)
     rad_trappist_fg = calculate_mutual_hill_radius(mu_a=2.544e-5, mu_b=5.012e-5,
-                                                 a_a=37.10e-3, a_b=45.10e-3)
+                                                   a_a=37.10e-3, a_b=45.10e-3)
     rad_trappist_gh = calculate_mutual_hill_radius(mu_a=5.012e-5, mu_b=1.534e-5,
-                                                 a_a=45.10e-3, a_b=59.60e-3)
+                                                   a_a=45.10e-3, a_b=59.60e-3)
 
     delta_trappist_de = (28.17 - 21.44) * 1e-3 / rad_trappist_de
     delta_trappist_ef = (37.10 - 28.17) * 1e-3 / rad_trappist_ef
@@ -119,6 +152,9 @@ def main():
     """
     Docstring
     """
+
+    fig_width, fig_height = set_size(5.316, 1, (1, 1))
+
     mass = np.logspace(-1, 0, 1000)
     habitables = calculate_habitable_zone(mass=mass,
                                           output_lims=True)
@@ -134,10 +170,10 @@ def main():
     mdwarf04 = Star(mass=.4)
     earth_m01 = Planet(mass=3.00e-6,
                        radius=4.26e-5,
-                       semimajor_axis=habitable[0])
+                       semimajor_axis=habitable[np.argmin(np.abs(np.array(mass)-.1))])
     earth_g = Planet(mass=3.00e-6,
                      radius=4.26e-5,
-                     semimajor_axis=habitable[-1])
+                     semimajor_axis=habitable[np.argmin(np.abs(np.array(mass)-1.))])
     earth_k = Planet(mass=3.00e-6,
                      radius=4.26e-5,
                      semimajor_axis=habitable[np.argmin(np.abs(np.array(mass)-.7))])
@@ -150,7 +186,7 @@ def main():
     delta_crit = 2 * np.sqrt(3) / (1 + np.sqrt(3) *\
                 (2 * earth_g.mass / 3 / gtype.mass) ** (1./3.))
 
-    hill_spacings = np.linspace(delta_crit, 65, 10000)
+    hill_spacings = np.linspace(delta_crit, 80, 10000)
 
     ecc_m, ecc_g = [], []
     tiss_m, tiss_g = [], []
@@ -174,12 +210,12 @@ def main():
 
     for num in hill_spacings:
         tiss_spacing_m01 = np.append(tiss_spacing_m01,
-                                     calculate_tisserand_hill_spacing(habitable_zone=habitable[0],
+                                     calculate_tisserand_hill_spacing(habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-.1))],
                                                                       planet=earth_m01,
                                                                       star=mdwarf01,
                                                                       delta_planet=num))
         tiss_spacing_g = np.append(tiss_spacing_g,
-                                   calculate_tisserand_hill_spacing(habitable_zone=habitable[-1],
+                                   calculate_tisserand_hill_spacing(habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-1.))],
                                                                     planet=earth_g,
                                                                     star=gtype,
                                                                     delta_planet=num))
@@ -199,65 +235,7 @@ def main():
     delta_solar_system, tiss_solar_system = solarsystem_delta_tiss()
     delta_trappist, tiss_trappist = trappist1_delta_tiss()
 
-    plt.axhline(3., ls='--', c='tab:gray', xmin=delta_crit/max(hill_spacings))
-
-    plt.plot(hill_spacings, tiss_spacing_m01, label=r'0.1 $M_\mathrm{Sun}$')
-    plt.plot(hill_spacings, tiss_spacing_m04, label=r'0.4 $M_\mathrm{Sun}$')
-    plt.plot(hill_spacings, tiss_spacing_k, label=r'0.7 $M_\mathrm{Sun}$')
-    plt.plot(hill_spacings, tiss_spacing_g, label=r'1.0 $M_\mathrm{Sun}$')
-
-    plt.plot(delta_solar_system, tiss_solar_system, '.', c='dimgray')
-    plt.plot(delta_trappist, tiss_trappist, 'x', c='dimgray')
-
-    plt.text(47.5, 2.9925, r'Solar System',
-             rotation=-4, color='dimgray')
-    plt.text(4.25, 2.991, r'TRAPPIST-1',
-             rotation=-4, color='dimgray')
-
-    plt.axvspan(0, delta_crit, alpha=0.5, color='tab:gray')
-    plt.text(delta_crit / 2.4, 2.94, 'Unstable', rotation=90)
-
-    plt.xlabel(r'$\Delta a / R_{H, m}$', fontsize=12)
-    plt.ylabel(r'$\mathcal{T}_\mathrm{max}$', fontsize=12)
-
-    plt.xlim(0, 65)
-
-    plt.legend(loc='lower left')
-
-    plt.show()
-
-    plt.plot(num_planets, tiss_m / max(tiss_m), marker='.', label='M dwarf')
-    plt.plot(num_planets, tiss_g / max(tiss_g), marker='.', label='G-type')
-
-    plt.title(f'max(M dwarf) = {max(tiss_m):.3f}, max(G-type) = {max(tiss_g):.3f}')
-    plt.xlabel(r'$N_\mathrm{pl}$')
-    plt.ylabel(r'$\mathcal{T} / \mathrm{max}(\mathcal{T})$')
-
-    plt.legend(loc='lower right')
-
-    plt.show()
-
     v_esc = earth_m01.calculate_escape_velocity()
-
-    v_imp_g = generate_vimp_dist(tiss_params=tiss_g,
-                                 star=gtype,
-                                 planet=earth_g)
-    v_imp_m = generate_vimp_dist(tiss_params=tiss_m,
-                                 star=mdwarf01,
-                                 planet=earth_m01)
-
-    plt.plot(num_planets, v_imp_m / 1e3, marker='.', label='M dwarf')
-    plt.plot(num_planets, v_imp_g / 1e3, marker='.', label='G-type')
-    plt.axhline(v_esc / 1e3, ls='--', c='tab:gray')
-
-    plt.xlabel(r'$N_\mathrm{pl}$')
-    plt.ylabel(r'$v_\mathrm{imp}$ [km/s]')
-
-    plt.ylim(11, 16)
-
-    plt.legend()
-
-    plt.show()
 
     v_imp_spacing_g = generate_vimp_dist(tiss_params=tiss_spacing_g,
                                          star=gtype,
@@ -272,26 +250,57 @@ def main():
                                            star=mdwarf04,
                                            planet=earth_m04)
 
-    plt.axhline(v_esc / 1e3, ls='--', c='tab:gray', xmin=delta_crit/max(hill_spacings))
-    plt.axhline(15., ls=':', c='tab:gray', alpha=0.5, xmin=delta_crit/max(hill_spacings))
-    plt.plot(hill_spacings, v_imp_spacing_m01 / 1e3, label=r'0.1 $M_\mathrm{Sun}$')
-    plt.plot(hill_spacings, v_imp_spacing_m04 / 1e3, label=r'0.4 $M_\mathrm{Sun}$')
-    plt.plot(hill_spacings, v_imp_spacing_k / 1e3, label=r'0.7 $M_\mathrm{Sun}$')
-    plt.plot(hill_spacings, v_imp_spacing_g / 1e3, label=r'1.0 $M_\mathrm{Sun}$')
+    fig = plt.figure(figsize=(1.6 * fig_width, 1. * fig_height))
+    ax01 = fig.add_subplot(1, 2, 1)
+    ax02 = fig.add_subplot(1, 2, 2, sharex = ax01)
 
-    plt.axvspan(0, delta_crit, alpha=0.5, color='tab:gray')
-    plt.text(delta_crit / 2.4, 13.5, 'Unstable', rotation=90)
-    plt.text(5, 15.1, 'HCN threshold', color='tab:gray')
+    ax01.axhline(3., ls='--', c='tab:gray', xmin=delta_crit/max(hill_spacings))
+    ax01.plot(hill_spacings, tiss_spacing_g, label=r'1.0 $M_\mathrm{Sun}$', c='#a65628')
+    ax01.plot(hill_spacings, tiss_spacing_k, label=r'0.7 $M_\mathrm{Sun}$', c='#4daf4a')
+    ax01.plot(hill_spacings, tiss_spacing_m04, label=r'0.4 $M_\mathrm{Sun}$', c='#ff7f00')
+    ax01.plot(hill_spacings, tiss_spacing_m01, label=r'0.1 $M_\mathrm{Sun}$', c='#377eb8')
+    ax01.plot(delta_solar_system, tiss_solar_system, '.', c='dimgray')
+    ax01.plot(delta_trappist, tiss_trappist, 'x', c='dimgray')
+    ax01.text(42.7, 2.983, r'Solar System',
+             rotation=-6, color='tab:gray')
+    ax01.text(4.2, 2.97, r'TRAPPIST-1',
+             rotation=-15, color='tab:gray', fontsize=9)
+    ax01.axvspan(0, delta_crit, alpha=0.5, color='tab:gray')
+    ax01.text(delta_crit / 4, 2.885, 'Unstable', rotation=90)
+    ax01.set_ylabel(r'$\mathcal{T}_\mathrm{max}$', fontsize=13)
+    ax01.set_xlabel(r'$\Delta$ [mutual Hill radii]', fontsize=13)
+    ax01.set_xlim(0, 80)
+    ax01.legend(loc=(0.08, 0.045), borderpad=0.5)
+    ax01.text(0.5, 3.015, '(a)', fontsize=13)
+    ax01.minorticks_on()
+    ax01.tick_params(direction='in', which='both')
+    ax01.set_yticks([2.8, 2.85, 2.9, 2.95, 3.])
 
-    plt.xlabel(r'$\Delta a / R_{H, m}$', fontsize=12)
-    plt.ylabel(r'$v_\mathrm{imp}$ [km/s]', fontsize=12)
+    ax02.axhline(v_esc / 1e3, ls='--', c='tab:gray', xmin=delta_crit/max(hill_spacings))
+    ax02.axhline(15., ls=':', c='tab:gray', alpha=0.5, xmin=delta_crit/max(hill_spacings))
+    ax02.axhline(20., ls='-.', c='tab:gray', alpha=0.5, xmin=delta_crit/max(hill_spacings))
+    ax02.plot(hill_spacings, v_imp_spacing_g / 1e3, label=r'1.0 $M_\mathrm{Sun}$', c='#a65628')
+    ax02.plot(hill_spacings, v_imp_spacing_k / 1e3, label=r'0.7 $M_\mathrm{Sun}$', c='#4daf4a')
+    ax02.plot(hill_spacings, v_imp_spacing_m04 / 1e3, label=r'0.4 $M_\mathrm{Sun}$', c='#ff7f00')
+    ax02.plot(hill_spacings, v_imp_spacing_m01 / 1e3, label=r'0.1 $M_\mathrm{Sun}$', c='#377eb8')
 
-    plt.ylim(11, )
-    plt.xlim(0, 65)
+    ax02.axvspan(0, delta_crit, alpha=0.5, color='tab:gray')
+    ax02.text(delta_crit / 4, 15.725, 'Unstable', rotation=90)
+    ax02.text(5, 14.3, 'efficient delivery', color='tab:gray')
+    ax02.text(5, 20.2, 'inefficient delivery', color='tab:gray')
+    ax02.set_ylabel(r'$v_\mathrm{imp}$ [km/s]', fontsize=13)
+    ax02.set_xlabel(r'$\Delta$ [mutual Hill radii]', fontsize=13)
+    ax02.set_ylim(11, )
+    ax02.set_xlim(0, 80)
+    ax02.text(1.05, 22.3, '(b)', fontsize=13)
+    ax02.minorticks_on()
+    ax02.tick_params(direction='in', which='both')
 
-    plt.legend(loc='upper left')
+    plt.savefig('Tiss_vimp_hill_spacing.pdf', format='pdf', bbox_inches='tight', pad_inches=0.0)
 
     plt.show()
+
+    fig.savefig('../../../../../Documents/Cambridge/Papers/CometaryDelivery/Tiss_vimp_hill_spacing.pdf', format='pdf', bbox_inches='tight', pad_inches=0.)
 
 
 if __name__ == "__main__":
