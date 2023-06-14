@@ -11,10 +11,22 @@ def calculate_eccentricity(habitable_zone: float,
                            snow_line: float,
                            num_planets: int):
     """
-    Docstring
+    Calculate the eccentricity of a particle assuming equally spaced planets
+    between the habitable zone and snow line.
 
-    Assuming we have a planet at the habitable zone, and snow-line, equally spaced
-    between.
+    Parameters:
+    -----------
+    habitable_zone : float
+        Distance of the habitable zone from the star.
+    snow_line : float
+        Distance of the snow line from the star.
+    num_planets : int
+        Number of planets between the habitable zone and snow line.
+
+    Returns:
+    --------
+    float
+        Eccentricity of the particle.
     """
     if not isinstance(habitable_zone, float):
         raise TypeError('Habitable zone distance must be a float.')
@@ -34,7 +46,22 @@ def calculate_semimajor_axis(habitable_zone: float,
                              snow_line: float,
                              num_planets: int):
     """
-    Docstring
+    Calculate the semi-major axis of the particle's orbit assuming equally
+    spaced planets between the habitable zone and snow line.
+
+    Parameters:
+    -----------
+    habitable_zone : float
+        Distance of the habitable zone from the star.
+    snow_line : float
+        Distance of the snow line from the star.
+    num_planets : int
+        Number of planets between the habitable zone and snow line.
+
+    Returns:
+    --------
+    float
+        Semi-major axis of the particle's orbit
     """
     if not isinstance(habitable_zone, float):
         raise TypeError('Habitable zone distance must be a float.')
@@ -54,7 +81,22 @@ def calculate_tisserand(habitable_zone: float,
                         snow_line: float,
                         num_planets: int):
     """
-    Docstring
+    Calculate the Tisserand parameter of the particle assuming equally
+    spaced planets between the habitable zone and snow line.
+
+    Parameters:
+    -----------
+    habitable_zone : float
+        Distance of the habitable zone from the star.
+    snow_line : float
+        Distance of the snow line from the star.
+    num_planets : int
+        Number of planets between the habitable zone and snow line.
+
+    Returns:
+    --------
+    float
+        Tisserand parameter of the particle.
     """
     if not isinstance(habitable_zone, float):
         raise TypeError('Habitable zone distance must be a float.')
@@ -82,7 +124,24 @@ def calculate_tisserand_hill_spacing(habitable_zone: float,
                                      star: Star,
                                      delta_planet: float):
     """
-    Docstring
+    Calculate the particle's Tisserand parameter given a planetary separation
+    delta_planet.
+
+    Parameters:
+    -----------
+    habitable_zone : float
+        Distance of the habitable zone from the star.
+    planet : Planet object
+        The planet object representing the planet.
+    star : Star object
+        The star object representing the central star.
+    delta_planet : float
+        Separation of planets (in mutual Hill raddii)
+
+    Returns:
+    --------
+    float
+        Tisserand parameter of the particle.
     """
     if not isinstance(habitable_zone, float):
         raise TypeError('Habitable zone distance must be a float.')

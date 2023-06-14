@@ -5,3 +5,7 @@
 # VolPy
 
 This repository contains the REBOUND scripts used for the N-body test particle simulations, as well as simple scripts to generate the figures found in Anslow, Bonsor & Rimmer 2023, submitted (Proceedings of the Royal Society A).
+
+## Setup
+- Install the package from Github
+- 

@@ -7,7 +7,17 @@ import numpy as np # pylint: disable=import-error
 
 def calc_luminosity(mass: np.ndarray):
     """
-    Docstring
+    Calculate the luminosity for a given array of stellar masses.
+
+    Args:
+        mass (np.ndarray): An array of stellar masses.
+
+    Returns:
+        np.ndarray: The calculated luminosity values for the given stellar masses.
+
+    Raises:
+        TypeError: If mass is not a numpy array.
+        ValueError: If the maximum stellar mass exceeds 3 M_sun.
     """
     if not isinstance(mass, np.ndarray):
         raise TypeError('Stellar masses must be a numpy array.')

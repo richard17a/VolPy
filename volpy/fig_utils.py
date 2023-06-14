@@ -5,7 +5,9 @@ import numpy as np # pylint: disable=import-error
 
 
 def set_size(width, fraction=1, subplots=(1, 1)):
-    """Set figure dimensions to avoid scaling in LaTeX.
+    """
+    Set figure dimensions to avoid scaling in LaTeX. 
+    This code is from: https://jwalton.info/Embed-Publication-Matplotlib-Latex/
 
     Parameters
     ----------
@@ -42,7 +44,11 @@ def set_size(width, fraction=1, subplots=(1, 1)):
 
 def read_sim_data():
     """
-    Docstring
+    Read simulation data from files.
+
+    Returns:
+        vimp_m (tuple): Velocity data for M-type dwarf simulations
+        vimp_g (tuple): Velocity data for G-type dwarf simulations
     """
 
     vals_m10 = np.loadtxt('../rebound_scripts/data_files/Mdwarf_delta10.txt', unpack=True)

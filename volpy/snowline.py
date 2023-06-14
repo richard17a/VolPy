@@ -1,5 +1,5 @@
 """
-Docstring
+Module Docstring
 """
 
 import numpy as np # pylint: disable=import-error
@@ -11,7 +11,26 @@ def calculate_snowline(mass: np.ndarray,
                        outer=3.2,
                        output_lims=False):
     """
-    Docstring
+    Calculate the snowline positions for a given array of stellar masses.
+
+    Args:
+        mass (np.ndarray): An array of stellar masses.
+        inner (float, optional): The inner snowline position.
+        outer (float, optional): The outer snowline position.
+        output_lims (bool, optional): Whether to output the inner and outer
+                                      snowline positions (default is False).
+
+    Returns:
+        np.ndarray or tuple: The snowline positions. If output_lims is False,
+                             returns an array of snowline positions. If
+                             output_lims is True, returns a tuple of
+                             (snowline, snowline_in, snowline_out).
+
+    Raises:
+        TypeError: If mass is not a numpy array or inner/outer/output_lims
+                   are not of the expected type.
+        ValueError: If the maximum stellar mass exceeds 3 M_sun or if the
+                    outer snowline is not outside the inner snowline.
     """
     if not isinstance(mass, np.ndarray):
         raise TypeError('Stellar masses must be a numpy array.')

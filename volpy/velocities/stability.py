@@ -1,5 +1,5 @@
 """
-Docstring
+Module Docstring
 """
 
 import numpy as np # pylint: disable=import-error
@@ -13,7 +13,26 @@ def calculate_max_num_planets(habitable_zone: float,
                               planet: Planet,
                               conservative=True):
     """
-    Docstring - this is for equal mass planets
+    Calculate the maximum number of equal mass planets within the habitable zone.
+    This is based off the stability critereon from e.g. Obertas+2017
+
+    Parameters:
+    -----------
+    habitable_zone : float
+        Distance of the habitable zone from the star.
+    snow_line : float
+        Distance of the snow line from the star.
+    star : Star object
+        The star object representing the central star.
+    planet : Planet object
+        The planet object representing the planets.
+    conservative : bool, optional
+        Flag to use conservative estimates (default is True).
+
+    Returns:
+    --------
+    int
+        The maximum number of equal mass planets that can fit within the habitable zone.
     """
     if not isinstance(habitable_zone, float):
         raise TypeError('Habitable zone distance must be a float.')

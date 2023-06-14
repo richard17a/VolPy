@@ -11,7 +11,23 @@ def calculate_effective_flux(mass: np.ndarray,
                              temp_eff: np.ndarray,
                              inner=True):
     """
-    Docstring
+    Calculate the effective flux for a given array of stellar masses and effective
+    temperatures. This follows equation (2) from Kopparpu+2013
+
+    Args:
+        mass (np.ndarray): An array of stellar masses.
+        temp_eff (np.ndarray): An array of effective temperatures.
+        inner (bool): A flag indicating whether to calculate the effective
+                      flux for the inner region.
+
+    Returns:
+        np.ndarray: The calculated effective flux values.
+
+    Raises:
+        TypeError: If mass is not a numpy array.
+        ValueError: If the maximum stellar mass exceeds 3 M_sun.
+        TypeError: If temp_eff is not a numpy array.
+        TypeError: If inner is not a boolean.
     """
     if not isinstance(mass, np.ndarray):
         raise TypeError('Stellar masses must be a numpy array.')
@@ -49,7 +65,20 @@ def calculate_effective_flux(mass: np.ndarray,
 def calculate_habitable_zone(mass: np.ndarray,
                              output_lims=False):
     """
-    Docstring
+    Calculate the habitable zone for a given array of stellar masses.
+
+    Args:
+        mass (np.ndarray): An array of stellar masses.
+        output_lims (bool): A flag indicating whether to output the inner
+                            and outer limits of the habitable zone.
+
+    Returns:
+        np.ndarray: The calculated habitable zone values.
+
+    Raises:
+        TypeError: If mass is not a numpy array.
+        ValueError: If the maximum stellar mass exceeds 3 M_sun.
+        TypeError: If output_lims is not a boolean.
     """
     if not isinstance(mass, np.ndarray):
         raise TypeError('Stellar masses must be a numpy array.')

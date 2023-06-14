@@ -12,8 +12,18 @@ def calculate_relative_velocity(tiss: float,
                                 star: Star,
                                 planet: Planet):
     """
-    Docstring
+    Calculate the relative velocity between a comet and a habitable planet based
+    on the comet's Tisserand parameter.
 
+    Parameters:
+    - tiss (float): The Tisserand parameter.
+    - star (Star): A Star object representing the central star.
+    - planet (Planet): A Planet object representing the habitable planet.
+
+    Returns:
+    - v_rel (float): The relative velocity between the particle and planet.
+
+    Formula (see paper):
     v_rel = v_kep * sqrt(3 - Tiss)
 
     """
@@ -36,7 +46,18 @@ def calculate_min_vimp(tiss: float,
                        star: Star,
                        planet: Planet):
     """
-    Docstring
+    Calculate the minimum impact velocity of the comet based on its Tisserand parameter
+
+    Parameters:
+    - tiss (float): The comet's Tisserand parameter.
+    - star (Star): A Star object representing the central star.
+    - planet (Planet): A Planet object representing the habitable planet.
+
+    Returns:
+    - v_imp (float): The minimum impact velocity onto the habitable planet.
+
+    Formula (see paper):
+    v_imp = sqrt(v_esc^2 + v_rel^2)
     """
 
     if not isinstance(tiss, float):
@@ -59,7 +80,18 @@ def generate_vimp_dist(tiss_params: np.ndarray,
                        star: Star,
                        planet: Planet):
     """
-    Docstring
+    Generate the impact velocity distribution for a given set of Tisserand parameters.
+
+    Parameters:
+    - tiss_params (np.ndarray): An array of Tisserand parameters.
+    - star (Star): A Star object representing the central star.
+    - planet (Planet): A Planet object representing the planet.
+
+    Returns:
+    - v_imp (np.ndarray): The array of impact velocities corresponding to the Tisserand parameters.
+
+    Formula:
+    v_imp = sqrt(v_esc^2 + v_rel^2)
     """
     if not isinstance(tiss_params, np.ndarray):
         raise TypeError('Tisserand paramters must be in a numpy array for\
