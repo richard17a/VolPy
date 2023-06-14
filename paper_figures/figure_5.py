@@ -99,7 +99,7 @@ def main():
     ax01.tick_params(direction="in")
     ax01.legend(loc='upper right')
     ax01.annotate(r'$M_\ast=0.1 M_\mathrm{Sun}$', xy=(0.05, 0.90), xycoords='axes fraction',
-                  bbox=dict(boxstyle='round', fc='white', ec='gainsboro'))
+                  bbox={"boxstyle":'round', "fc":'white', "ec":'gainsboro'})
     ax01.text(9, 103, '(a)', fontsize=13)
     ax01.set_xlabel('$\Delta$ [mutual Hill radii]', fontsize=13)
 
@@ -110,7 +110,7 @@ def main():
     ax02.plot(hill_spacings, fracs_16g, marker='s', label=r'$v<16$ km/s', markersize=4)
     ax02.plot(hill_spacings, fracs_17g, marker='*', label=r'$v<17$ km/s')
     ax02.annotate(r'$M_\ast=1.0 M_\mathrm{Sun}$', xy=(0.05, 0.90), xycoords='axes fraction',
-              bbox=dict(boxstyle='round', fc='white', ec='gainsboro'))
+              bbox={"boxstyle":'round', "fc":'white', "ec":'gainsboro'})
     ax02.minorticks_on()
     ax02.tick_params(direction="in", labelleft=True, which='both')
     ax02.text(9, 103, '(b)', fontsize=13)
