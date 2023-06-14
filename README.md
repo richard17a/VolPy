@@ -8,4 +8,12 @@ This repository contains the REBOUND scripts used for the N-body test particle s
 
 ## Setup
 - Install the package from Github
-- 
+- Navigate to project directory
+- Install required packages
+	- pip install -r requirements.txt
+- Install the package
+	- pip install .
+
+## Generate figures from paper
+- navigate to paper_figures directory
+- python figure_x.py
