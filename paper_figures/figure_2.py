@@ -13,43 +13,10 @@ from volpy.velocities.orbital_elements import (calculate_eccentricity,
                                                calculate_tisserand,
                                                calculate_tisserand_hill_spacing)
 from volpy.velocities.generate_vimp_dist import generate_vimp_dist
+from volpy.fig_utils import set_size
 
 matplotlib.rcParams['mathtext.fontset'] = 'cm'
 matplotlib.rcParams['font.family'] = 'STIXGeneral'
-
-
-def set_size(width, fraction=1, subplots=(1, 1)):
-    """Set figure dimensions to avoid scaling in LaTeX.
-
-    Parameters
-    ----------
-    width: float or string
-            Document width in points, or string of predined document type
-    fraction: float, optional
-            Fraction of the width which you wish the figure to occupy
-    subplots: array-like, optional
-            The number of rows and columns of subplots.
-    Returns
-    -------
-    fig_dim: tuple
-            Dimensions of figure in inches
-    """
-    if width == 'thesis':
-        width_pt = 426.79135
-    elif width == 'beamer':
-        width_pt = 307.28987
-    else:
-        width_pt = width
-
-    # Golden ratio to set aesthetic figure height
-    # https://disq.us/p/2940ij3
-    golden_ratio = (5**.5 - 1) / 2
-
-
-    fig_width_in = width_pt * fraction
-    fig_height_in = fig_width_in * golden_ratio * (subplots[0] / subplots[1])
-
-    return (fig_width_in, fig_height_in)
 
 
 def calculate_mutual_hill_radius(mu_a: float,
@@ -154,6 +121,7 @@ def main():
     """
 
     fig_width, fig_height = set_size(5.316, 1, (1, 1))
+    # fig_width, fig_height = set_size('thesis', 1, (1, 1))
 
     mass = np.logspace(-1, 0, 1000)
     habitables = calculate_habitable_zone(mass=mass,
@@ -209,28 +177,38 @@ def main():
                                                        num_planets=int(num)))
 
     for num in hill_spacings:
-        tiss_spacing_m01 = np.append(tiss_spacing_m01,
-                                     calculate_tisserand_hill_spacing(habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-.1))],
-                                                                      planet=earth_m01,
-                                                                      star=mdwarf01,
-                                                                      delta_planet=num))
-        tiss_spacing_g = np.append(tiss_spacing_g,
-                                   calculate_tisserand_hill_spacing(habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-1.))],
-                                                                    planet=earth_g,
-                                                                    star=gtype,
-                                                                    delta_planet=num))
-        tiss_spacing_k = np.append(tiss_spacing_k,
-                                   calculate_tisserand_hill_spacing(
-                                    habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-.7))],
-                                    planet=earth_k,
-                                    star=ktype,
-                                    delta_planet=num))
-        tiss_spacing_m04 = np.append(tiss_spacing_m04,
-                                    calculate_tisserand_hill_spacing(
-                                     habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-.4))],
-                                     planet=earth_m04,
-                                     star=mdwarf04,
-                                     delta_planet=num))
+        tiss_spacing_m01 = np.append(
+            tiss_spacing_m01,
+            calculate_tisserand_hill_spacing(
+                habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-.1))],
+                planet=earth_m01,
+                star=mdwarf01,
+                delta_planet=num)
+            )
+        tiss_spacing_g = np.append(
+            tiss_spacing_g,
+            calculate_tisserand_hill_spacing(
+                habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-1.))],
+                planet=earth_g,
+                star=gtype,
+                delta_planet=num)
+            )
+        tiss_spacing_k = np.append(
+            tiss_spacing_k,
+            calculate_tisserand_hill_spacing(
+                habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-.7))],
+                planet=earth_k,
+                star=ktype,
+                delta_planet=num)
+            )
+        tiss_spacing_m04 = np.append(
+            tiss_spacing_m04,
+            calculate_tisserand_hill_spacing(
+                habitable_zone=habitable[np.argmin(np.abs(np.array(mass)-.4))],
+                planet=earth_m04,
+                star=mdwarf04,
+                delta_planet=num)
+            )
 
     delta_solar_system, tiss_solar_system = solarsystem_delta_tiss()
     delta_trappist, tiss_trappist = trappist1_delta_tiss()
@@ -276,6 +254,10 @@ def main():
     ax01.tick_params(direction='in', which='both')
     ax01.set_yticks([2.8, 2.85, 2.9, 2.95, 3.])
 
+    ax02.axvspan(0, delta_crit, alpha=0.5, color='tab:gray')
+    ax02.text(delta_crit / 4, 15.725, 'Unstable', rotation=90)
+    ax02.text(5, 14.3, 'efficient organic delivery', color='tab:gray')
+    ax02.text(5, 20.2, 'inefficient organic delivery', color='tab:gray')
     ax02.axhline(v_esc / 1e3, ls='--', c='tab:gray', xmin=delta_crit/max(hill_spacings))
     ax02.axhline(15., ls=':', c='tab:gray', alpha=0.5, xmin=delta_crit/max(hill_spacings))
     ax02.axhline(20., ls='-.', c='tab:gray', alpha=0.5, xmin=delta_crit/max(hill_spacings))
@@ -284,10 +266,6 @@ def main():
     ax02.plot(hill_spacings, v_imp_spacing_m04 / 1e3, label=r'0.4 $M_\mathrm{Sun}$', c='#ff7f00')
     ax02.plot(hill_spacings, v_imp_spacing_m01 / 1e3, label=r'0.1 $M_\mathrm{Sun}$', c='#377eb8')
 
-    ax02.axvspan(0, delta_crit, alpha=0.5, color='tab:gray')
-    ax02.text(delta_crit / 4, 15.725, 'Unstable', rotation=90)
-    ax02.text(5, 14.3, 'efficient delivery', color='tab:gray')
-    ax02.text(5, 20.2, 'inefficient delivery', color='tab:gray')
     ax02.set_ylabel(r'$v_\mathrm{imp}$ [km/s]', fontsize=13)
     ax02.set_xlabel(r'$\Delta$ [mutual Hill radii]', fontsize=13)
     ax02.set_ylim(11, )
@@ -296,11 +274,9 @@ def main():
     ax02.minorticks_on()
     ax02.tick_params(direction='in', which='both')
 
-    plt.savefig('Tiss_vimp_hill_spacing.pdf', format='pdf', bbox_inches='tight', pad_inches=0.0)
+    # plt.savefig('Tiss_vimp_hill_spacing.pdf', format='pdf', bbox_inches='tight', pad_inches=0.0)
 
     plt.show()
-
-    fig.savefig('../../../../../Documents/Cambridge/Papers/CometaryDelivery/Tiss_vimp_hill_spacing.pdf', format='pdf', bbox_inches='tight', pad_inches=0.)
 
 
 if __name__ == "__main__":
