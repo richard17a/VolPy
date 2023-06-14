@@ -6,12 +6,9 @@ import numpy as np # pylint: disable=import-error
 import matplotlib.pyplot as plt # pylint: disable=import-error
 import matplotlib # pylint: disable=import-error
 from volpy.habitable import calculate_habitable_zone
-from volpy.snowline import calculate_snowline
 from volpy.planet import Planet
 from volpy.star import Star
-from volpy.velocities.orbital_elements import (calculate_eccentricity,
-                                               calculate_tisserand,
-                                               calculate_tisserand_hill_spacing)
+from volpy.velocities.orbital_elements import calculate_tisserand_hill_spacing
 from volpy.velocities.generate_vimp_dist import generate_vimp_dist
 from volpy.fig_utils import set_size
 
@@ -126,11 +123,8 @@ def main():
     mass = np.logspace(-1, 0, 1000)
     habitables = calculate_habitable_zone(mass=mass,
                                           output_lims=True)
-    snowlines = calculate_snowline(mass=mass,
-                                   output_lims=True)
 
     habitable = habitables[0]
-    snowline =snowlines[0]
 
     gtype = Star(mass=1.)
     ktype = Star(mass=.7)
@@ -149,32 +143,12 @@ def main():
                        radius=4.26e-5,
                        semimajor_axis=habitable[np.argmin(np.abs(np.array(mass)-.4))])
 
-    num_planets = np.linspace(1, 7, 7)
-
     delta_crit = 2 * np.sqrt(3) / (1 + np.sqrt(3) *\
                 (2 * earth_g.mass / 3 / gtype.mass) ** (1./3.))
 
     hill_spacings = np.linspace(delta_crit, 80, 10000)
 
-    ecc_m, ecc_g = [], []
-    tiss_m, tiss_g = [], []
     tiss_spacing_m01, tiss_spacing_g, tiss_spacing_m04, tiss_spacing_k = [], [], [], []
-
-    for num in num_planets:
-
-        ecc_m = np.append(ecc_m, calculate_eccentricity(habitable_zone=habitable[0],
-                                                        snow_line=snowline[0],
-                                                        num_planets=int(num)))
-        ecc_g = np.append(ecc_g, calculate_eccentricity(habitable_zone=habitable[-1],
-                                                        snow_line=snowline[-1],
-                                                        num_planets=int(num)))
-
-        tiss_m = np.append(tiss_m, calculate_tisserand(habitable_zone=habitable[0],
-                                                       snow_line=snowline[0],
-                                                       num_planets=int(num)))
-        tiss_g = np.append(tiss_g, calculate_tisserand(habitable_zone=habitable[-1],
-                                                       snow_line=snowline[-1],
-                                                       num_planets=int(num)))
 
     for num in hill_spacings:
         tiss_spacing_m01 = np.append(
