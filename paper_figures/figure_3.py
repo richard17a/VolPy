@@ -104,7 +104,7 @@ def main():
     ax01.text(0.09, 83, '(a)', fontsize=13)
     ax01.annotate("$M_{\mathrm{pl}} = 0.5 M_{\mathrm{Earth}}$\n$v_{\mathrm{esc}}$ = 7.90 km/s",
                   xy=(0.05,0.075), xycoords='axes fraction',
-                  bbox=dict(boxstyle="round", fc='whitesmoke', ec="lightgray"))
+                  bbox={"boxstyle":"round", "fc":'whitesmoke', "ec":"lightgray"})
     ax01.text(0.106, 65, r'$15~$km/s', color='crimson', rotation=55)
     ax01.text(0.95, 9, 'Efficient\ndelivery', color='white', rotation=0)
 
@@ -125,8 +125,8 @@ def main():
 
     ax02.annotate("$M_{\mathrm{pl}} = M_{\mathrm{Earth}}$\n$v_{\mathrm{esc}}$ = 11.18 km/s",
                   xy=(0.05,0.075), xycoords='axes fraction',
-                  bbox=dict(boxstyle="round",
-                  fc='whitesmoke', ec="lightgray"))
+                  bbox={"boxstyle":"round",
+                  "fc":'whitesmoke', "ec":"lightgray"})
     ax02.text(0.09, 83, '(b)', fontsize=13)
 
     ax03.contourf(m_grid, ps_grid, vimp_2 / 1e3, levels=levels, extend='max', cmap='seismic')
@@ -151,7 +151,7 @@ def main():
 
     ax03.annotate("$M_{\mathrm{pl}} = 2M_{\mathrm{Earth}}$\n$v_{\mathrm{esc}}$ = 15.81 km/s",
                   xy=(0.05,0.075), xycoords='axes fraction',
-                  bbox=dict(boxstyle="round", fc='whitesmoke', ec="lightgray"))
+                  bbox={"boxstyle":"round", "fc":'whitesmoke', "ec":"lightgray"})
 
     plt.subplots_adjust(wspace=0.05)
 

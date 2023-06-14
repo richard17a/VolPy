@@ -17,5 +17,4 @@ max-locals=50
 max-statements=100
 
 [MESSAGES CONTROL]
-disable=anomalous-backslash-in-string,
-		consider-using-dict-comprehension
+disable=anomalous-backslash-in-string
