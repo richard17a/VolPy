@@ -26,3 +26,7 @@ The Makefile's for the REBOUND (https://github.com/hannorein/rebound) N-body sim
 - navigate to subfolder - cd Gtype_delta10/
 - make
 - ./rebound
+
+
+### Contact
+Please get in touch with me if you have any questions, suggestions or something isn't working! You can do this either by email ([rja92@ast.cam.ac.uk](mailto:rja92@ast.cam.ac.uk)) or raise an issue.
