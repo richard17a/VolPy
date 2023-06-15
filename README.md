@@ -7,7 +7,7 @@
 This repository contains the REBOUND scripts used for the N-body test particle simulations, as well as simple scripts to generate the figures found in Anslow, Bonsor & Rimmer 2023, submitted (Proceedings of the Royal Society A).
 
 **Important** 
-The directory rebound_scripts/rebound_src/ is unchanged from https://github.com/hannorein/rebound. This is included in this repository so that the scripts in rebound_scripts/ can be run as-is. All relevant papers (Rein+19, ReinLiu12, ReinSpiegel15, ReinTamayo15) are appropriately cited in Anslow, Bonsor & Rimmer 2023. 
+The Makefile's for the REBOUND (https://github.com/hannorein/rebound) N-body simulations currently have a dummy path (./path_to_rebound_src/), which should be replaced with your local path to the REBOUND src/ directory.
 
 ## Setup
 - Install the package from Github

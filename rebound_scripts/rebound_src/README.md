@@ -1,2 +1,0 @@
-##Important - external code
-These are the source files from https://github.com/hannorein/rebound, included here so that the N-body simulations can be run as-is. All relevant papers (Rein+19, ReinLiu12, ReinSpiegel15, ReinTamayo15) are appropriately cited in Anslow, Bonsor & Rimmer 2023. 
