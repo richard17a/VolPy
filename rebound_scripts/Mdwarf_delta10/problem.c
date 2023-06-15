@@ -18,7 +18,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         if (c.p1 == 1) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p2], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle6.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle6.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p2].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -37,7 +37,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle6.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle6.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel,plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -48,7 +48,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         else if (c.p2 == 1) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p1], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle6.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle6.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p1].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -67,7 +67,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle6.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle6.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel, plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -81,7 +81,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         if (c.p1 == 2) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p2], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle5.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle5.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p2].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -100,7 +100,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle5.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle5.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel,plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -111,7 +111,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         else if (c.p2 == 2) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p1], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle5.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle5.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p1].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -130,7 +130,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle5.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle5.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel, plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -145,7 +145,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         if (c.p1 == 3) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p2], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle4.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle4.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p2].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -164,7 +164,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle4.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle4.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel,plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -175,7 +175,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         else if (c.p2 == 3) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p1], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle4.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle4.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p1].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -194,7 +194,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle4.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle4.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel, plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -209,7 +209,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         if (c.p1 == 4) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p2], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle3.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle3.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p2].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -228,7 +228,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle3.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle3.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel,plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -239,7 +239,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         else if (c.p2 == 4) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p1], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle3.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle3.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p1].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -258,7 +258,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle3.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle3.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel, plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -273,7 +273,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         if (c.p1 == 5) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p2], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle2.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle2.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p2].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -292,7 +292,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle2.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle2.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel,plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -303,7 +303,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         else if (c.p2 == 5) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p1], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle2.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle2.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p1].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -322,7 +322,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle2.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle2.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel, plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -337,7 +337,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         if (c.p1 == 6) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p2], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle1.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle1.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p2].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -356,7 +356,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle1.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle1.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel,plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -367,7 +367,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
         else if (c.p2 == 6) {
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[c.p1], primary);
 
-            FILE* ofae = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_ae_particle1.txt","a+");        // open file for collision output
+            FILE* ofae = fopen("/output_dir/Mdwarf_delta10/collision_ae_particle1.txt","a+");        // open file for collision output
             fprintf(ofae, "%e\t", t);
             fprintf(ofae, "%d\t", particles[c.p1].hash);                    // time, hash
             fprintf(ofae, "%e %e %e\t", o.a, o.e, o.inc);    // relative velocity
@@ -386,7 +386,7 @@ int collision_record_only(struct reb_simulation* const r, struct reb_collision c
             double tp_vel = pow(pow(vx_tp, 2.) + pow(vy_tp, 2.) + pow(vz_tp, 2.), 1./2.);
             double plan_vel = pow(pow(vx_p, 2.) + pow(vy_p, 2.) + pow(vz_p, 2.), 1./2.);
 
-            FILE* of = fopen("/data/rja92/rebound_outputs/stellar_type_N_pl_experiment/Mdwarf_delta10/collision_velocities_particle1.txt","a+");        // open file for collision output
+            FILE* of = fopen("/output_dir/Mdwarf_delta10/collision_velocities_particle1.txt","a+");        // open file for collision output
             fprintf(of, "%e\t", t);                    // time
             fprintf(of, "%e %e %e\t", rel_vel, tp_vel, plan_vel);    // relative velocity
             fprintf(of, "\n");
@@ -401,7 +401,7 @@ double E0;
 double counter;
 void heartbeat(struct reb_simulation* r){
     if (reb_output_check(r, 1.*r->dt)){
-        // reb_output_timing(r, 0);
+
         double E = reb_tools_energy(r);
         double relE = fabs((E-E0)/E0);
 
@@ -422,11 +422,10 @@ void heartbeat(struct reb_simulation* r){
         struct reb_particle* particles = r->particles;
         struct reb_particle primary = r->particles[0];
         
-        // printf("Removing particles on hyperbolic orbits.");
-
         for (int i=r->N_active;i<r->N;i++){
             struct reb_orbit o = reb_tools_particle_to_orbit(r->G, particles[i], primary);
 
+            // Removing test-particles with pericentre > 10 * outer-planets semi-major axis
             if(o.a * (1 - o.e) > 10*a_p6){
                 reb_remove(r, i, keepSorted);
 
@@ -445,6 +444,7 @@ void heartbeat(struct reb_simulation* r){
         }
     }
 
+    // periodically refreshing test-particles
     if (reb_output_check(r, 100000000.*r->dt)){
         int keepSorted = 0;
         
