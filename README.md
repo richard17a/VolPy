@@ -27,6 +27,9 @@ The Makefile's for the REBOUND (https://github.com/hannorein/rebound) N-body sim
 - make
 - ./rebound
 
+## Data accessibility
+We include the results of the N-body simulations described in (Anslow, Bonsor & Rimmer 2023, submitted) in the directory ./rebound_scripts/data_files/. This directory contains the recorded impact velocities on the inner, habitable planet for each simulation run.
+
 
 ### Contact
 Please get in touch with me if you have any questions, suggestions or something isn't working! You can do this either by email ([rja92@ast.cam.ac.uk](mailto:rja92@ast.cam.ac.uk)) or raise an issue.
