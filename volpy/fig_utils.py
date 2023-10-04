@@ -6,7 +6,7 @@ import numpy as np # pylint: disable=import-error
 
 def set_size(width, fraction=1, subplots=(1, 1)):
     """
-    Set figure dimensions to avoid scaling in LaTeX. 
+    Set figure dimensions to avoid scaling in LaTeX.
     This code is from: https://jwalton.info/Embed-Publication-Matplotlib-Latex/
 
     Parameters
@@ -42,27 +42,39 @@ def set_size(width, fraction=1, subplots=(1, 1)):
     return (fig_width_in, fig_height_in)
 
 
-def read_sim_data():
+def read_sim_data(flag=0):
     """
     Read simulation data from files.
 
     Returns:
-        vimp_m (tuple): Velocity data for M-type dwarf simulations
+        vimp_m_01 (tuple): Velocity data for 0.1 M_Sun M-type dwarf simulations
+        vimp_m_04 (tuple): Velocity data for 0.4 M_Sun M-type dwarf simulations
         vimp_g (tuple): Velocity data for G-type dwarf simulations
     """
 
-    vals_m10 = np.loadtxt('../rebound_scripts/data_files/Mdwarf_delta10.txt', unpack=True)
-    vals_m20 = np.loadtxt('../rebound_scripts/data_files/Mdwarf_delta20.txt', unpack=True)
-    vals_m30 = np.loadtxt('../rebound_scripts/data_files/Mdwarf_delta30.txt', unpack=True)
-    vals_m50 = np.loadtxt('../rebound_scripts/data_files/Mdwarf_delta50.txt', unpack=True)
+    vals_m_01_10 = np.loadtxt('../rebound_scripts/data_files/M01dwarf_delta10.txt', unpack=True)
+    vals_m_01_20 = np.loadtxt('../rebound_scripts/data_files/M01dwarf_delta20.txt', unpack=True)
+    vals_m_01_30 = np.loadtxt('../rebound_scripts/data_files/M01dwarf_delta30.txt', unpack=True)
+    vals_m_01_50 = np.loadtxt('../rebound_scripts/data_files/M01dwarf_delta50.txt', unpack=True)
 
     # Unit convertion into km/s
-    vimp_m10 = 29.805655 * vals_m10[1]
-    vimp_m20 = 29.805655 * vals_m20[1]
-    vimp_m30 = 29.805655 * vals_m30[1]
-    vimp_m50 = 29.805655 * vals_m50[1]
+    vimp_m_01_10 = 29.805655 * vals_m_01_10[1]
+    vimp_m_01_20 = 29.805655 * vals_m_01_20[1]
+    vimp_m_01_30 = 29.805655 * vals_m_01_30[1]
+    vimp_m_01_50 = 29.805655 * vals_m_01_50[1]
 
-    vimp_m = (vimp_m10, vimp_m20, vimp_m30, vimp_m50)
+    vimp_m_01 = (vimp_m_01_10, vimp_m_01_20, vimp_m_01_30, vimp_m_01_50)
+
+    vals_m_04_10 = np.loadtxt('../rebound_scripts/data_files/M04dwarf_delta10.txt', unpack=True)
+    vals_m_04_30 = np.loadtxt('../rebound_scripts/data_files/M04dwarf_delta30.txt', unpack=True)
+    vals_m_04_50 = np.loadtxt('../rebound_scripts/data_files/M04dwarf_delta50.txt', unpack=True)
+
+    # Unit convertion into km/s
+    vimp_m_04_10 = 29.805655 * vals_m_04_10[1]
+    vimp_m_04_30 = 29.805655 * vals_m_04_30[1]
+    vimp_m_04_50 = 29.805655 * vals_m_04_50[1]
+
+    vimp_m_04 = (vimp_m_04_10, vimp_m_04_30, vimp_m_04_50)
 
     vals_g10 = np.loadtxt('../rebound_scripts/data_files/Gtype_delta10.txt', unpack=True)
     vals_g20 = np.loadtxt('../rebound_scripts/data_files/Gtype_delta20.txt', unpack=True)
@@ -77,4 +89,7 @@ def read_sim_data():
 
     vimp_g = (vimp_g10, vimp_g20, vimp_g30, vimp_g50)
 
-    return vimp_m, vimp_g
+    if flag == 0:
+        return vimp_m_01, vimp_m_04, vimp_g
+    elif flag == 1:
+        return vimp_m_01, vimp_g

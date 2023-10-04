@@ -16,7 +16,7 @@ def main():
     Docstring
     """
 
-    vimp_m, vimp_g = read_sim_data()
+    vimp_m, vimp_g = read_sim_data(flag=1) # pylint: disable=unbalanced-tuple-unpacking
 
     hill_spacings = np.array([50, 30, 20, 10])
 
@@ -117,7 +117,7 @@ def main():
     ax02.set_xlabel('$\Delta$ [mutual Hill radii]', fontsize=13)
 
     fig.text(0.07, 0.5,
-        'Fraction of velocities (%)', va='center', rotation='vertical', fontsize=13)
+        'Fraction of low velocity impacts (%)', va='center', rotation='vertical', fontsize=13)
 
     plt.subplots_adjust(wspace=0.1)
 

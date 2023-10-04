@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+paper_figures/first_year_report_corrections.py
+paper_figures/first_year_report_corrections_22.py
+paper_figures/first_year_report_corrections_25.py
+paper_figures/.DS_Store
+figure_4_old.py
