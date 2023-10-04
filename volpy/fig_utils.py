@@ -93,3 +93,4 @@ def read_sim_data(flag=0):
         return vimp_m_01, vimp_m_04, vimp_g
     if flag == 1:
         return vimp_m_01, vimp_g
+    return None
