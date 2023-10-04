@@ -91,5 +91,5 @@ def read_sim_data(flag=0):
 
     if flag == 0:
         return vimp_m_01, vimp_m_04, vimp_g
-    elif flag == 1:
+    if flag == 1:
         return vimp_m_01, vimp_g
