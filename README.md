@@ -4,7 +4,7 @@
 
 # VolPy
 
-This repository contains the REBOUND scripts used for the N-body test particle simulations, as well as simple scripts to generate the figures found in Anslow, Bonsor & Rimmer 2023, submitted (Proceedings of the Royal Society A).
+This repository contains the REBOUND scripts used for the N-body test particle simulations, as well as simple scripts to generate the figures found in Anslow, Bonsor & Rimmer 2023 [Can comets deliver prebiotic molecules to rocky exoplanets?](https://ui.adsabs.harvard.edu/abs/2023RSPSA.47930434A/abstract).
 
 **Important** 
 The Makefile's for the REBOUND (https://github.com/hannorein/rebound) N-body simulations currently have a dummy path (./path_to_rebound_src/), which should be replaced with your local path to the REBOUND src/ directory.
